@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <%- include('./partials/head'); %>
+  </head>
+  <body>
+
+    <header>
+        <%- include('./partials/header'); %>
+    </header>
+
+    <div class="container m-3">
+
+      <h2 ><%= title %></h2>
+      <p>Categories</p>
+  
+      <!-- <div class="div-cats"> -->
+      <div class="d-flex justify-content-start gap-5">
+  
+        <% data.categories.forEach( function(category) { %>
+  
+            <!-- <form class="form-cat" action=<%= category.url %> > -->
+            <form action=<%= category.url %> >
+              <!-- <button class="btn-cat"> -->
+              <button class="btn btn-primary btn-md">  
+                <strong><%= category.name %></strong>
+              </button>
+            </form>
+  
+        <% }) %>
+  
+      </div>
+
+    </div>
+
+
+    <footer>
+      <%- include('./partials/footer'); %>
+    </footer>
+
+
+  </body>
+</html>
+
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <%- include('./partials/head'); %>
+  </head>
+
+  <body>
+
+    <header>
+        <%- include('./partials/header'); %>
+    </header>
+
+
+    <div class="container m-3">
+
+        <h2><%= title %></h2>
+
+        <div class="container">
+    
+            <form method="POST" action="">
+                <div class="row mb-3">
+                    <label for="name" class="col-sm-2 col-form-label col-form-label-md">Name</label>
+                    <div class="col-md-10">
+                        <input 
+                            type="text" 
+                            id="name" 
+                            class="form-control form-control-md" 
+                            name="name"
+                            <% if (typeof name !== 'undefined') { %>
+                                value=<%= name %>
+                            <% } %>
+                        />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="description" class="col-sm-2 col-form-label col-form-label-md">Description</label>
+                    <div class="col-md-10">
+                        <input 
+                            type="text" 
+                            id="description" 
+                            class="form-control form-control-md flex-fill" 
+                            name="description"
+                            <% if (typeof description !== 'undefined') { %>
+                                value=<%= description %>
+                            <% } %>
+                        />
+                    </div>
+                </div>
+        
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+    
+        </div>
+
+    </div>
+
+
+    <footer>
+      <%- include('./partials/footer'); %>
+    </footer>
+
+  </body>
+</html>
+
+

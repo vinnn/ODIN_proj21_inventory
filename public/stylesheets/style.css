@@ -1,0 +1,33 @@
+/* general page setup */
+* { 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* border: 1px solid blue; */
+}
+/* body { min-height: 100vh; } */
+
+
+/* specifics */
+body {
+  padding: 30px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+/* 
+.div-cats {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-cat {
+  width: 30vw;
+  height: 10vw; 
+}
+.btn-cat {
+  width: 100%;
+  height: 100%;
+} */
