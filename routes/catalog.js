@@ -6,6 +6,9 @@ const category_controller = require("../controllers/categoryController");
 const item_controller = require("../controllers/itemController");
 
 
+
+
+
 /// CATEGORY ROUTES ///
 
 // GET catalog home page.
@@ -63,6 +66,17 @@ router.get("/item/:id", item_controller.item_detail);
 
 // GET request for list of all Item items.
 router.get("/items", item_controller.item_list);
+
+
+
+
+/// OTHER ROUTES ///
+
+// GET category list (same as catalog home page).
+router.get("/category_list", category_controller.index);
+
+// GET item list (same as catalog item_list).
+router.get("/item_list", item_controller.item_list);
 
 
 

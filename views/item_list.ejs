@@ -5,21 +5,34 @@
 </head>
 
 <body>
+
     <header>
         <%- include('./partials/header'); %>
     </header>
-    
-    <h1>THERE HE GO THE ITEMS</h1>
-    <div> TITLE = 
-        <%= locals.title %>
+
+    <div class="container m-3">
+
+      <h2 ><%= title %></h2>
+      <p>Items</p>
+  
+      <div class="d-flex justify-content-start gap-5">
+  
+        <% item_list.forEach( function(item) { %>
+            <form action=<%= item.url %> >
+              <button class="btn btn-primary btn-md">  
+                <strong><%= item.title %></strong>
+              </button>
+            </form>
+        <% }) %>
+  
+      </div>
+
     </div>
 
 
     <footer>
-        <%- include('./partials/footer'); %>
+      <%- include('./partials/footer'); %>
     </footer>
-
-
 
 </body>
 </html>

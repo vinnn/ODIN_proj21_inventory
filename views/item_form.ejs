@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <%- include('./partials/head'); %>
+  </head>
+
+  <body>
+
+    <header>
+        <%- include('./partials/header'); %>
+    </header>
+
+
+    <div class="container m-3">
+
+        <h2><%= form_title %></h2>
+
+        <div class="container">
+    
+            <form method="POST" action="">
+                <div class="row mb-3">
+                    <label for="item_title" class="col-sm-2 col-form-label col-form-label-md">Title</label>
+                    <div class="col-md-10">
+                        <input 
+                            type="text" 
+                            id="item_title" 
+                            class="form-control form-control-md" 
+                            name="item_title"
+                            <% if (typeof item_title !== 'undefined') { %>
+                                value=<%= item_title %>
+                            <% } %>
+                        />
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <label for="item_text" class="col-sm-2 col-form-label col-form-label-md">Text</label>
+                    <div class="col-md-10">
+                        <input 
+                            type="text" 
+                            id="item_text" 
+                            class="form-control form-control-md flex-fill" 
+                            name="item_text"
+                            <% if (typeof item_text !== 'undefined') { %>
+                                value=<%= item_text %>
+                            <% } %>
+                        />
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <label for="item_author" class="col-sm-2 col-form-label col-form-label-md">Author</label>
+                    <div class="col-md-10">
+                        <input 
+                            type="text" 
+                            id="item_author" 
+                            class="form-control form-control-md flex-fill" 
+                            name="item_author"
+                            <% if (typeof item_author !== 'undefined') { %>
+                                value=<%= item_author %>
+                            <% } %>
+                        />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="item_source" class="col-sm-2 col-form-label col-form-label-md">Source</label>
+                    <div class="col-md-10">
+                        <input 
+                            type="text" 
+                            id="item_source" 
+                            class="form-control form-control-md flex-fill" 
+                            name="item_source"
+                            <% if (typeof item_source !== 'undefined') { %>
+                                value=<%= item_source %>
+                            <% } %>
+                        />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="item_year" class="col-sm-2 col-form-label col-form-label-md">Year</label>
+                    <div class="col-md-10">
+                        <input 
+                            type="text" 
+                            id="item_year" 
+                            class="form-control form-control-md flex-fill" 
+                            name="item_year"
+                            <% if (typeof item_year !== 'undefined') { %>
+                                value=<%= item_year %>
+                            <% } %>
+                        />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="item_categories" class="col-sm-2 col-form-label col-form-label-md">Categories</label>
+                    <div class="col-md-10">
+
+                            <% categories.forEach( category => {  %>
+
+                                <div class="form-check for-check-inline">
+                                    <label for="item_category" class="form-check-label"> <%=category.name%> </label>
+                                    <input 
+                                        type="checkbox" 
+                                        id="item_category"
+                                        class="form-check-input" 
+                                        name="item_category_ids"
+                                        value=<%=category._id%> 
+                                        <% if (category.checked) {checked=category.checked}  %>
+                                    />
+                                </div>
+    
+                            <% }); %>
+
+                    </div>
+                </div>
+
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+    
+            <% if (errors) { %>
+                <% errors.forEach( error => { %>
+                    <div> <%= error.msg %> </div>
+                <% })  %>
+            <% } %>
+
+
+        </div>
+
+    </div>
+
+
+    <footer>
+      <%- include('./partials/footer'); %>
+    </footer>
+
+  </body>
+</html>
+
+

@@ -8,7 +8,7 @@ const ItemSchema = new Schema({
   author: { type: String, maxLength: 100 },
   source: { type: String },
   year: { type: Number },
-  category: { type: Schema.Types.ObjectId, ref: "Category", required: false }, // reference to the associated category (many-to-many relationship, ??? although an item must have at least one category)
+  categories: [{ type: Schema.Types.ObjectId, ref: "Category", required: false }], // reference to the associated category (many-to-many relationship, ??? although an item must have at least one category)
 });
 
 // Virtual for author's URL

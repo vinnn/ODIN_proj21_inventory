@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const CategorySchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: false },
-  items: { type: Schema.Types.ObjectId, ref: "Item", required: false }, // reference to the associated items (many-to-many relationship, although a category may have no item)
+  items: [{ type: Schema.Types.ObjectId, ref: "Item", required: false }], // reference to the associated items (many-to-many relationship, although a category may have no item)
 });
 
 // Virtual for book's URL

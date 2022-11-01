@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head'); %>
+</head>
+<body>
+    <header>
+        <%- include('./partials/header'); %>
+    </header>
+
+
+    <div class="container m-3">
+
+            <h2>Item</h2>
+
+            <div class="container">
+
+                <div class="row mb-3">
+                    <div class="col-2">Title : </div>
+                    <div class="col-10"> <%= title %> </div> 
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2">Text : </div>
+                    <div class="col-10"> <%= text %> </div>        
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2">Author : </div>
+                    <div class="col-10"> <%= author %> </div>        
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2">Source : </div>
+                    <div class="col-10"> <%= source %> </div>        
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2">Year : </div>
+                    <div class="col-10"> <%= year %> </div>        
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-2">Categories : </div>
+                    <div class="col-10"> 
+                        <% item.categories.forEach( category => {  %>
+                            <div><%=category.name%></div>
+                        <% }) %>
+                    </div>  
+                </div>
+
+                <div class="container">
+                    <a class="btn btn-primary" href="<%= item.url %>/update" >Update</a>
+                    <a class="btn btn-primary" href="<%= item.url %>/delete" >Delete</a>
+                </div>
+            </div>
+    </div>
+
+
+    <footer>
+        <%- include('./partials/footer'); %>
+    </footer>
+
+
+</body>
+</html>

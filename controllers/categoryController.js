@@ -20,7 +20,7 @@ exports.index = (req, res) => {
       },
       (err, results) => {
         res.render("index", {
-          title: "Inventory Home",
+          title: "All Categories",
           error: err,
           data: results,
         });
@@ -30,7 +30,7 @@ exports.index = (req, res) => {
 
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-// Display list of all Category.
+// Display list of all Categories.
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 exports.category_list = (req, res, next) => {
   Category.find()
@@ -76,6 +76,7 @@ exports.category_detail = (req, res, next) => {
       res.render("category_detail", {
         name: results.category.name,
         description: results.category.description,
+        items: results.category.items,
         category: results.category,
       });
     }
@@ -175,15 +176,63 @@ exports.category_create_post = [
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Display Category delete form on GET.
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-exports.category_delete_get = (req, res) => {
-  res.send("NOT IMPLEMENTED: Category delete GET");
+exports.category_delete_get = (req, res, next) => {
+
+  async.parallel(
+    {
+      category(callback) {
+        Category.findById(req.params.id).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.category == null) {
+        // no results
+        res.redirect("/catalog/categories");
+      }
+      // render the delete page
+      res.render("category_delete", {
+        title: "Delete Category",
+        category: results.category,
+      });
+    }
+  )
+
 };
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Handle Category delete on POST.
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 exports.category_delete_post = (req, res) => {
-  res.send("NOT IMPLEMENTED: Category delete POST");
+
+
+  console.log("body.categoryid", req.body.categoryid)
+  
+  async.parallel(
+    {
+      category(callback) {
+        Category.findById(req.body.categoryid).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      // success. Delete record.
+      Category.findByIdAndRemove(req.body.categoryid, (err) => {
+        if (err) {
+          return next(err);
+        }
+        // Success - go to book list
+        res.redirect("/catalog/categories");
+      });
+    }
+  );
+
+
+
 };
 
 
